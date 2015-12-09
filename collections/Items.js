@@ -1,5 +1,11 @@
 Items = new Meteor.Collection('items');
 
+Items.allow({
+	insert: function(userId, doc) {
+		return !!userId;
+	}
+});
+
 ItemSchema = new SimpleSchema({
 	name: {
 		type: String,
@@ -14,9 +20,9 @@ ItemSchema = new SimpleSchema({
 		type: String,
 		label: "Description"
 	},
-	store: {
+	author: {
 		type: String,
-		label: "Store",
+		label: "Author",
 		autoValue: function() {
 			return this.userId
 		},
