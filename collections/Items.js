@@ -5,6 +5,11 @@ ItemSchema = new SimpleSchema({
 		type: String,
 		label: "Name"
 	},
+	price: {
+		type: Number,
+		label: "Price",
+		min: 0
+	},
 	description: {
 		type: String,
 		label: "Description"
@@ -14,6 +19,9 @@ ItemSchema = new SimpleSchema({
 		label: "Store",
 		autoValue: function() {
 			return this.userId
+		},
+		autoform: {
+			type: "hidden"
 		}
 	},
 	createdAt: {
@@ -21,6 +29,9 @@ ItemSchema = new SimpleSchema({
 		label: "Created At",
 		autoValue: function() {
 			return new Date()
+		},
+		autoform: {
+			type: "hidden"
 		}
 	}
 });
