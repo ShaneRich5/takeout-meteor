@@ -1,1 +1,1 @@
-Orders = new Meteor.Collection('recipies');
+Orders = new Mongo.Collection('recipies');

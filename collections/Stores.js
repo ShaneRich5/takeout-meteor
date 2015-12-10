@@ -1,4 +1,42 @@
-Stores = new Meteor.Collection('stores');
+Stores = new Mongo.Collection('stores');
+
+Stores.allow({
+	insert: function(userId, doc) {
+		return !!userId;
+	}
+});
+
+Branch = new SimpleSchema({
+	street: {
+		type: String,
+		label: "Street"
+	},
+	city: {
+		type: String,
+		label: "City"
+	},
+	country: {
+		type: String,
+		label: "Country",
+		autoValue: function() {
+			return "Jamaica";
+		},
+		autoform: {
+			type: "hidden"
+		}
+	},
+	latitude: {
+		type: Number,
+		label: "Latitude"
+	},
+	longitude: {
+		type: Number,
+		label: "Longitude"
+	},
+	numbers: {
+		type: String
+	}
+});
 
 StoreSchema = new SimpleSchema({
 	name: {
@@ -7,7 +45,8 @@ StoreSchema = new SimpleSchema({
 	},
 	shortName: {
 		type: String,
-		label: "Short Name"
+		label: "Short Name",
+		optional: true
 	},
 	slogan: {
 		type: String,
@@ -17,20 +56,23 @@ StoreSchema = new SimpleSchema({
 		type: String,
 		label: "Description"
 	},
-	// should make this a contact schema
 	email: {
 		type: String,
 		label: "Email"
 	},
 	number: {
 		type: String,
-		label: "Number"
+		label: "Head Office Number",
+		optional: true
+	},
+	branches: {
+		type: [Branch]
 	},
 	createdAt: {
 		type: Date,
 		label: "Created At",
 		autoValue: function() {
-			return new Date()
+			return new Date();
 		},
 		autoform: {
 			type: "hidden"

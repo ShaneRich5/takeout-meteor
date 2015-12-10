@@ -1,0 +1,12 @@
+<template name="StoreListItem">
+	<article class="recipe">
+		<h3>{{shortName}}</h3>
+		<p>{{description}}</p>
+		<p>
+			{{#each branches}}
+				<span class="ingredient">{{street}}, {{city}} {{numbers}}</span>
+			{{/each}}
+		</p>
+		<a href="/stores/{{_id}}">More Information</a>
+	</article>
+</template>
